@@ -44,6 +44,8 @@ if __name__ == '__main__':
     except json.decoder.JSONDecodeError:
         sys.exit('Your configuration has an invalid format')
 
+    logging.basicConfig(filename=settings.LOG_FILE, filemode='w', level=logging.INFO)
+    logging.info('Starting Right Now Alerts')
     while True:
         for alert in right_now_alerts:
             trigger = alert
@@ -58,6 +60,5 @@ if __name__ == '__main__':
                 message = 'Big drop for {} in {} seconds: {}.'.format(alert.name, settings.INTERVAL, alert.message)
 
                 ses.send(settings.FROM_EMAIL, alert.emails, subject, message)
-                logger = logging.getLogger('right-now-alert')
-                logger.info('Email sent!')
+                logging.info('Email sent!')
         time.sleep(settings.INTERVAL)
