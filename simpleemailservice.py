@@ -8,5 +8,5 @@ class SimpleEmailService(object):
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key)
 
-    def send(self, sender, recipient, subject, body):
-        self.conn.send_email(sender, subject, body, [recipient])
+    def send(self, sender, recipients, subject, body):
+        self.conn.send_email(sender, subject, body, [recipients])

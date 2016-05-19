@@ -8,11 +8,11 @@ from simpleemailservice import SimpleEmailService
 
 
 class RightNowAlert(object):
-    def __init__(self, ga_id, email, percentage=10):
+    def __init__(self, ga_id, emails, percentage=10):
         self.percentage = percentage
         self.analytics = Analytics(ga_id, settings.ANALYTICS_KEY_NAME)
         self.previous_value = self.analytics.get_right_now()
-        self.email = email
+        self.emails = emails.split(',')
         self.name = self.analytics.get_name()
         self.message = ''
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
                 subject = 'Alert for {}!'.format(alert.name)
                 message = 'Big drop for {} in {} seconds: {}.'.format(alert.name, settings.INTERVAL, alert.message)
 
-                ses.send(settings.FROM_EMAIL, alert.email, subject, message)
+                ses.send(settings.FROM_EMAIL, alert.emails, subject, message)
                 logger = logging.getLogger('right-now-alert')
                 logger.info('Email sent!')
         time.sleep(settings.INTERVAL)
