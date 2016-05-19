@@ -7,4 +7,5 @@ AWS_REGION = os.environ.get('AWS_REGION', 'us-west-2')
 ALERTS = os.environ['ALERTS']
 ANALYTICS_KEY_NAME = os.environ['ANALYTICS_KEY_NAME']
 FROM_EMAIL = os.environ['FROM_EMAIL']
-LOG_FILE = 'rightnowalerts.log'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LOG_FILE = os.environ.get('LOG_FILE', BASE_DIR + '/rightnowalerts.log')
