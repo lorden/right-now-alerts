@@ -19,7 +19,7 @@ class RightNowAlert(object):
     def is_triggered(self):
         current_value = self.analytics.get_right_now()
         if self.previous_value:
-            current_percentage = (current_value / self.previous_value) * 100
+            current_percentage = (float(current_value) / float(self.previous_value)) * 100
             if current_percentage < 100 - self.percentage:
                 self.message = '{} -> {}'.format(self.previous_value, current_value)
                 self.previous_value = current_value
