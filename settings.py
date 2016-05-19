@@ -7,3 +7,4 @@ AWS_REGION = os.environ.get('AWS_REGION', 'us-west-2')
 ALERTS = os.environ['ALERTS']
 ANALYTICS_KEY_NAME = os.environ['ANALYTICS_KEY_NAME']
 FROM_EMAIL = os.environ['FROM_EMAIL']
+LOG_FILE = 'rightnowalerts.log'
